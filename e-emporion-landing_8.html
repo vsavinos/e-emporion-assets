@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-emporion — Άνοιξε το e-shop σου σε ένα απόγευμα</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#2563EB;
+  --blue-dark:#1D4ED8;
+  --blue-pale:#EFF6FF;
+  --black:#0A0A0A;
+  --near-black:#111827;
+  --slate:#374151;
+  --mid:#6B7280;
+  --light:#9CA3AF;
+  --border:#E5E7EB;
+  --bg:#FAFAFA;
+  --white:#FFFFFF;
+  --green:#16A34A;
+  --green-bg:#F0FDF4;
+  --amber:#D97706;
+  --amber-bg:#FFFBEB;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:64px;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-size:1.15rem;font-weight:800;color:var(--black);text-decoration:none;letter-spacing:-0.03em}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--black)}
+.nav-btn{
+  background:var(--blue);color:#fff;border:none;
+  padding:10px 22px;border-radius:100px;
+  font-size:.875rem;font-weight:600;cursor:pointer;
+  text-decoration:none;transition:background .15s;white-space:nowrap;
+}
+.nav-btn:hover{background:var(--blue-dark)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 48px 80px;
+  background:#fff;
+  position:relative;overflow:hidden;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-pale);color:var(--blue);
+  border-radius:100px;padding:6px 16px;
+  font-size:.8rem;font-weight:600;letter-spacing:.01em;
+  margin-bottom:32px;
+}
+.hero-pill-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:900;line-height:1.05;
+  letter-spacing:-.04em;color:var(--black);
+  max-width:900px;margin:0 auto 24px;
+}
+.hero h1 .blue{color:var(--blue)}
+.hero-sub{
+  font-size:clamp(1rem,1.5vw,1.25rem);
+  color:var(--mid);line-height:1.65;
+  max-width:560px;margin:0 auto 40px;font-weight:400;
+}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:56px}
+.btn-big{
+  background:var(--blue);color:#fff;border:none;
+  padding:16px 36px;border-radius:100px;
+  font-size:1rem;font-weight:700;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+  box-shadow:0 4px 20px rgba(37,99,235,.3);
+}
+.btn-big:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 6px 28px rgba(37,99,235,.4)}
+.btn-ghost-round{
+  background:#fff;color:var(--black);
+  border:1.5px solid var(--border);
+  padding:15px 32px;border-radius:100px;
+  font-size:1rem;font-weight:600;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+}
+.btn-ghost-round:hover{border-color:#9CA3AF;background:#FAFAFA}
+
+/* live counter */
+.hero-counter{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--bg);border:1px solid var(--border);border-radius:100px;
+  padding:10px 20px;font-size:.875rem;color:var(--slate);font-weight:500;
+}
+.counter-num{font-weight:800;color:var(--black);font-variant-numeric:tabular-nums;min-width:6ch;display:inline-block}
+.counter-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;animation:blink 1.5s infinite}
+
+/* ── MARQUEE STRIP ── */
+.marquee-section{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:18px 0;overflow:hidden;background:#fff;
+}
+.marquee-track{
+  display:flex;gap:56px;align-items:center;
+  animation:marquee 28s linear infinite;white-space:nowrap;
+  width:max-content;
+}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:.875rem;font-weight:600;color:var(--mid);flex-shrink:0;
+}
+.marquee-icon{font-size:1.1rem}
+
+/* ── SECTIONS ── */
+.section{padding:120px 48px}
+.section-center{text-align:center}
+.section-eyebrow{
+  font-size:.75rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:16px;
+}
+.section-h2{
+  font-size:clamp(2rem,4vw,3.5rem);font-weight:900;
+  letter-spacing:-.03em;line-height:1.1;
+  color:var(--black);margin-bottom:20px;
+}
+.section-body{
+  font-size:1.1rem;color:var(--mid);line-height:1.7;
+  max-width:560px;margin:0 auto;
+}
+
+/* ── BIG STATS ── */
+.stats-section{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  max-width:1100px;margin:0 auto;
+}
+.stat-cell{
+  padding:64px 32px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.stat-cell:last-child{border-right:none}
+.stat-big{
+  font-size:clamp(2.5rem,4vw,3.75rem);font-weight:900;
+  letter-spacing:-.04em;color:var(--black);line-height:1;margin-bottom:8px;
+}
+.stat-label{font-size:.9rem;color:var(--mid);font-weight:500}
+
+/* ── FEATURES — ALTERNATING ── */
+.feature-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  max-width:1100px;margin:0 auto;padding:100px 48px;
+}
+.feature-row.flip{direction:rtl}
+.feature-row.flip > *{direction:ltr}
+.feature-text .tag{
+  display:inline-block;background:var(--blue-pale);color:var(--blue);
+  font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:100px;
+  letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px;
+}
+.feature-text h3{
+  font-size:clamp(1.6rem,2.5vw,2.25rem);font-weight:800;
+  letter-spacing:-.03em;line-height:1.15;color:var(--black);margin-bottom:16px;
+}
+.feature-text p{font-size:1rem;color:var(--mid);line-height:1.75;margin-bottom:24px}
+.feature-checks{display:flex;flex-direction:column;gap:10px}
+.feature-check{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--slate);font-weight:500}
+.feature-check::before{
+  content:'✓';flex-shrink:0;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--green-bg);color:var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:800;
+  line-height:20px;text-align:center;
+}
+.feature-visual{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  aspect-ratio:4/3;display:flex;flex-direction:column;
+}
+.fv-header{
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:12px 16px;display:flex;align-items:center;gap:8px;
+}
+.fv-dots{display:flex;gap:5px}
+.fv-dot{width:10px;height:10px;border-radius:50%}
+.fv-dot-r{background:#FF5F57}.fv-dot-y{background:#FEBC2E}.fv-dot-g{background:#28C840}
+.fv-url{flex:1;background:var(--bg);border-radius:6px;padding:4px 10px;font-size:.68rem;color:var(--light);font-family:monospace}
+.fv-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:10px}
+
+/* product cards inside visual */
+.mini-product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mini-pcard{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.mini-pcard-img{height:52px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:#FAFAFA;border-bottom:1px solid var(--border)}
+.mini-pcard-info{padding:8px}
+.mini-pcard-name{font-size:.62rem;color:var(--slate);font-weight:600;line-height:1.3;margin-bottom:4px}
+.mini-pcard-price{font-size:.72rem;color:var(--blue);font-weight:800}
+
+/* booking visual */
+.mini-calendar{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px}
+.mini-cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.mini-cal-title{font-size:.75rem;font-weight:700;color:var(--black)}
+.mini-cal-nav{font-size:.75rem;color:var(--mid)}
+.mini-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:10px}
+.cal-day{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;color:var(--mid)}
+.cal-day.today{background:var(--blue);color:#fff}
+.cal-day.booked{background:#DCFCE7;color:var(--green)}
+.cal-day.empty{background:transparent}
+.mini-slot{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:var(--blue-pale);border-radius:8px;margin-bottom:6px}
+.mini-slot-time{font-size:.72rem;font-weight:700;color:var(--blue)}
+.mini-slot-name{font-size:.7rem;color:var(--mid)}
+.mini-slot-badge{font-size:.6rem;background:var(--green-bg);color:var(--green);border-radius:100px;padding:2px 8px;font-weight:700}
+
+/* mydata visual */
+.mini-mydata{display:flex;flex-direction:column;gap:8px}
+.mini-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid var(--border)}
+.mini-row.ok{background:var(--green-bg);border-color:#BBF7D0}
+.mini-row.pending{background:var(--blue-pale);border-color:#BFDBFE}
+.mini-row-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ok .mini-row-dot{background:#22C55E}
+.pending .mini-row-dot{background:var(--blue)}
+.mini-row-text{flex:1;font-size:.72rem;color:var(--slate);font-weight:500}
+.mini-row-badge{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:100px}
+.ok .mini-row-badge{background:#DCFCE7;color:var(--green)}
+.pending .mini-row-badge{background:var(--blue-pale);color:var(--blue)}
+.mini-aade-bar{margin-top:4px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:8px 12px;font-size:.68rem;color:var(--green);font-weight:600}
+
+/* ── PRICING ── */
+.pricing-section{background:var(--bg);padding:120px 48px}
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;max-width:1100px;margin:56px auto 0;
+}
+.pcard{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:20px;padding:32px 24px;
+  display:flex;flex-direction:column;transition:box-shadow .2s;
+}
+.pcard:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.pcard.featured{border-color:var(--blue);position:relative;box-shadow:0 0 0 1px var(--blue),0 8px 32px rgba(37,99,235,.12)}
+.pcard-popular{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--blue);color:#fff;font-size:.7rem;font-weight:700;
+  padding:4px 16px;border-radius:100px;white-space:nowrap;
+}
+.pcard-tier{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mid);margin-bottom:8px}
+.pcard-price{font-size:2.5rem;font-weight:900;letter-spacing:-.04em;color:var(--black);line-height:1;margin-bottom:4px}
+.pcard-price sup{font-size:1.1rem;vertical-align:super;font-weight:700}
+.pcard-price sub{font-size:.85rem;font-weight:400;color:var(--mid)}
+.pcard-desc{font-size:.85rem;color:var(--mid);margin:12px 0 20px;padding-bottom:20px;border-bottom:1px solid var(--border);line-height:1.55}
+.pcard-features{display:flex;flex-direction:column;gap:8px;flex:1;margin-bottom:24px}
+.pf{display:flex;align-items:flex-start;gap:8px;font-size:.84rem;color:var(--slate)}
+.pf::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0;margin-top:1px}
+.pf.no{color:var(--light)}
+.pf.no::before{content:'–';color:var(--border);font-weight:400}
+.pcard-btn{
+  padding:13px;border-radius:100px;
+  font-size:.9rem;font-weight:700;cursor:pointer;
+  text-align:center;text-decoration:none;transition:all .15s;display:block;
+}
+.pcard-btn-blue{background:var(--blue);color:#fff;border:none}
+.pcard-btn-blue:hover{background:var(--blue-dark)}
+.pcard-btn-outline{background:#fff;color:var(--black);border:1.5px solid var(--border)}
+.pcard-btn-outline:hover{border-color:#9CA3AF}
+
+/* ── TESTIMONIALS ── */
+.testi-section{padding:120px 0;background:#fff;overflow:hidden}
+.testi-section .section-center{padding:0 48px}
+.testi-scroll-wrap{margin-top:56px;overflow:hidden;position:relative}
+.testi-scroll-wrap::before,.testi-scroll-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+}
+.testi-scroll-wrap::before{left:0;background:linear-gradient(90deg,#fff,transparent)}
+.testi-scroll-wrap::after{right:0;background:linear-gradient(-90deg,#fff,transparent)}
+.testi-track{
+  display:flex;gap:20px;padding:4px 48px;
+  animation:slide 40s linear infinite;width:max-content;
+}
+.testi-track:hover{animation-play-state:paused}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tcard{
+  background:#fff;border:1.5px solid var(--border);border-radius:20px;
+  padding:28px;width:320px;flex-shrink:0;
+}
+.tcard-stars{color:#F59E0B;font-size:.9rem;margin-bottom:14px;letter-spacing:.1em}
+.tcard-text{font-size:.9rem;color:var(--slate);line-height:1.7;margin-bottom:20px;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.tcard-avatar{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:800;color:#fff;flex-shrink:0;
+}
+.tcard-name{font-size:.85rem;font-weight:700;color:var(--black)}
+.tcard-biz{font-size:.75rem;color:var(--mid)}
+
+/* ── HOW IT WORKS ── */
+.how-section{padding:120px 48px;background:var(--bg)}
+.how-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;max-width:1100px;margin:64px auto 0;
+  border:1px solid var(--border);border-radius:20px;overflow:hidden;
+}
+.how-step{background:#fff;padding:48px 40px;position:relative}
+.how-step:not(:last-child){border-right:1px solid var(--border)}
+.how-num{
+  width:52px;height:52px;border-radius:50%;background:var(--blue);
+  color:#fff;font-size:1.25rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;
+}
+.how-title{font-size:1.15rem;font-weight:800;color:var(--black);margin-bottom:12px;letter-spacing:-.02em}
+.how-desc{font-size:.9rem;color:var(--mid);line-height:1.7}
+
+/* ── CTA ── */
+.cta-section{
+  padding:140px 48px;text-align:center;
+  background:var(--black);color:#fff;
+}
+.cta-section h2{
+  font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;
+  letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;
+}
+.cta-section p{font-size:1.15rem;color:rgba(255,255,255,.6);margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto}
+.btn-big-white{
+  background:#fff;color:var(--black);border:none;
+  padding:18px 44px;border-radius:100px;
+  font-size:1.05rem;font-weight:700;cursor:pointer;
+  text-decoration:none;display:inline-block;
+  transition:all .15s;box-shadow:0 4px 20px rgba(255,255,255,.15);
+}
+.btn-big-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.2)}
+.cta-fine{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.35)}
+
+/* ── FOOTER ── */
+footer{background:var(--near-black);padding:64px 48px 40px;color:rgba(255,255,255,.5)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{font-size:1.1rem;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.03em;display:block;margin-bottom:12px}
+.footer-logo span{color:#60A5FA}
+.footer-tagline{font-size:.85rem;line-height:1.65;max-width:220px}
+.footer-col-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.8);margin-bottom:16px}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.85rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:rgba(255,255,255,.85)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-copy{font-size:.78rem;color:rgba(255,255,255,.3)}
+.footer-copy a{color:rgba(255,255,255,.3);text-decoration:none}
+.footer-copy a:hover{color:rgba(255,255,255,.6)}
+.footer-badge{font-size:.75rem;color:rgba(255,255,255,.3)}
+
+/* responsive */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .hero{padding:100px 24px 60px}
+  .hero h1{font-size:2.75rem}
+  .section{padding:80px 24px}
+  .feature-row{grid-template-columns:1fr;gap:40px;padding:60px 24px}
+  .feature-row.flip{direction:ltr}
+  .pricing-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(3){border-top:1px solid var(--border);border-right:1px solid var(--border)}
+  .stat-cell:nth-child(4){border-top:1px solid var(--border)}
+  .how-grid{grid-template-columns:1fr;border-radius:16px}
+  .how-step:not(:last-child){border-right:none;border-bottom:1px solid var(--border)}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  footer{padding:48px 24px 32px}
+  .pricing-section{padding:80px 24px}
+  .testi-section .section-center{padding:0 24px}
+  .how-section{padding:80px 24px}
+  .cta-section{padding:100px 24px}
+}
+@media(max-width:600px){
+  .pricing-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr}
+  .nav-links a:not(.nav-btn){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><span>e</span>-emporion</a>
+  <div class="nav-links">
+    <a href="#features">Χαρακτηριστικά</a>
+    <a href="#pricing">Τιμές</a>
+    <a href="#pricing" class="nav-btn">Ξεκίνα δωρεάν</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pill">
+    <span class="hero-pill-dot"></span>
+    Πλήρης myDATA συμμόρφωση 2025
+  </div>
+  <h1>Το e-shop σου<br>σε ένα <span class="blue">απόγευμα.</span></h1>
+  <p class="hero-sub">
+    Από προϊόντα και κρατήσεις μέχρι αυτόματα παραστατικά στην ΑΑΔΕ — 
+    όλα σε μία πλατφόρμα. Χωρίς developer, χωρίς λογιστή.
+  </p>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-big">Ξεκίνα δωρεάν →</a>
+    <a href="#features" class="btn-ghost-round">Πώς λειτουργεί</a>
+  </div>
+  <div class="hero-counter">
+    <span class="counter-dot"></span>
+    <span id="counter" class="counter-num">1.284</span>
+    καταστήματα δημιουργήθηκαν σήμερα
+  </div>
+
+  <!-- Photo social proof strip -->
+  <div style="margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:16px">
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center">
+      <!-- 5 owner avatars stacked -->
+      <div style="display:flex;align-items:center">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face" 
+             style="width:40px;height:40px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-right:-10px;position:relative;z-index:5" alt="">
+        <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=80&h=80&fit=crop&crop=face" 
+             style="width:40px;height:40px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-right:-10px;position:relative;z-index:4" alt="">
+        <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=80&h=80&fit=crop&crop=face" 
+             style="width:40px;height:40px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-right:-10px;position:relative;z-index:3" alt="">
+        <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=80&h=80&fit=crop&crop=face" 
+             style="width:40px;height:40px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-right:-10px;position:relative;z-index:2" alt="">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face" 
+             style="width:40px;height:40px;border-radius:50%;border:2px solid #fff;object-fit:cover;position:relative;z-index:1" alt="">
+      </div>
+      <span style="font-size:.875rem;color:var(--mid);font-weight:500">
+        <strong style="color:var(--black)">+1.200 έμποροι</strong> μας εμπιστεύονται ήδη
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="mtrack">
+    <span class="marquee-item"><span class="marquee-icon">🛍️</span> E-shop με custom domain</span>
+    <span class="marquee-item"><span class="marquee-icon">🧾</span> Αυτόματα παραστατικά</span>
+    <span class="marquee-item"><span class="marquee-icon">📅</span> Online κρατήσεις</span>
+    <span class="marquee-item"><span class="marquee-icon">💳</span> IRIS & Viva Wallet</span>
+    <span class="marquee-item"><span class="marquee-icon">🇬🇷</span> myDATA / ΑΑΔΕ</span>
+    <span class="marquee-item"><span class="marquee-icon">👥</span> Πολλαπλοί ρόλοι</span>
+    <span class="marquee-item"><span class="marquee-icon">📊</span> Αναφορές πωλήσεων</span>
+    <span class="marquee-item"><span class="marquee-icon">🚚</span> Courier integration</span>
+    <span class="marquee-item"><span class="marquee-icon">🤖</span> AI λειτουργίες</span>
+    <!-- duplicate for loop -->
+    <span class="marquee-item"><span class="marquee-icon">🛍️</span> E-shop με custom domain</span>
+    <span class="marquee-item"><span class="marquee-icon">🧾</span> Αυτόματα παραστατικά</span>
+    <span class="marquee-item"><span class="marquee-icon">📅</span> Online κρατήσεις</span>
+    <span class="marquee-item"><span class="marquee-icon">💳</span> IRIS & Viva Wallet</span>
+    <span class="marquee-item"><span class="marquee-icon">🇬🇷</span> myDATA / ΑΑΔΕ</span>
+    <span class="marquee-item"><span class="marquee-icon">👥</span> Πολλαπλοί ρόλοι</span>
+    <span class="marquee-item"><span class="marquee-icon">📊</span> Αναφορές πωλήσεων</span>
+    <span class="marquee-item"><span class="marquee-icon">🚚</span> Courier integration</span>
+    <span class="marquee-item"><span class="marquee-icon">🤖</span> AI λειτουργίες</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section section">
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <div class="stat-big">€0</div>
+      <div class="stat-label">Κόστος εκκίνησης</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">&lt;1h</div>
+      <div class="stat-label">Για να είσαι online</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">100%</div>
+      <div class="stat-label">myDATA συμμόρφωση</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-big">0</div>
+      <div class="stat-label">Ώρες σε λογιστικά</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PERSONA SECTION -->
+<section style="padding:100px 0;background:#fff;overflow:hidden">
+  <div style="text-align:center;margin-bottom:64px;padding:0 48px">
+    <div class="section-eyebrow">Για ποιον είναι</div>
+    <h2 class="section-h2">Για κάθε ελληνικό κατάστημα.</h2>
+    <p class="section-body">Barbershop, nail studio, γυμναστήριο, αρτοποιείο, ανθοπωλείο — αν έχεις κατάστημα, το e-emporion δουλεύει για σένα.</p>
+  </div>
+
+  <!-- ROW 1 tall: service businesses -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+
+    <div style="position:relative;overflow:hidden;height:380px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.05)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&h=600&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Barbershop">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:24px">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px">✂️ Barbershop</div>
+        <div style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px">«Τέλος με τα τηλεφωνήματα. Κρατήσεις μόνο online.»</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.45)">Κουρέας · Θεσσαλονίκη</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(37,99,235,.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:28px;text-align:center">
+        <div style="color:#fff"><div style="font-size:2.2rem;margin-bottom:14px">✂️</div><div style="font-weight:800;font-size:1rem;margin-bottom:10px">Κρατήσεις & Πληρωμές</div><div style="font-size:.85rem;opacity:.8;line-height:1.65">Online ραντεβού ανά κουρέα, υπενθύμιση SMS, πληρωμή κατά την κράτηση.</div></div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;height:380px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.05)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500&h=600&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Nail Studio">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:24px">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px">💅 Nail Studio</div>
+        <div style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px">«Γεμάτο ημερολόγιο κάθε εβδομάδα.»</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.45)">Nail Artist · Αθήνα</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(217,119,6,.9);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:28px;text-align:center">
+        <div style="color:#fff"><div style="font-size:2.2rem;margin-bottom:14px">💅</div><div style="font-weight:800;font-size:1rem;margin-bottom:10px">Ημερολόγιο ανά τεχνικό</div><div style="font-size:.85rem;opacity:.8;line-height:1.65">Κάθε nail artist έχει το δικό της ημερολόγιο. Πελάτισσες κλείνουν μόνες τους.</div></div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;height:380px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.05)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=500&h=600&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Gym">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:24px">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px">🏋️ Γυμναστήριο</div>
+        <div style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px">«Πακέτα PT, συνδρομές, ομαδικά — όλα online.»</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.45)">Personal Trainer · Πειραιάς</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(22,163,74,.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:28px;text-align:center">
+        <div style="color:#fff"><div style="font-size:2.2rem;margin-bottom:14px">🏋️</div><div style="font-weight:800;font-size:1rem;margin-bottom:10px">Πακέτα & Συνδρομές</div><div style="font-size:.85rem;opacity:.8;line-height:1.65">Πούλα πακέτα sessions, ορίστε χωρητικότητα τάξης, αυτόματα παραστατικά.</div></div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;height:380px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.05)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1487530811015-780bfdb0c6d0?w=500&h=600&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Ανθοπωλείο">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:24px">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px">💐 Ανθοπωλείο</div>
+        <div style="font-size:1.05rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:6px">«Παραγγελίες online, παράδοση αύριο.»</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.45)">Ανθοπώλης · Χαλάνδρι</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(124,58,237,.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:28px;text-align:center">
+        <div style="color:#fff"><div style="font-size:2.2rem;margin-bottom:14px">💐</div><div style="font-weight:800;font-size:1rem;margin-bottom:10px">E-shop + Courier</div><div style="font-size:.85rem;opacity:.8;line-height:1.65">Παραγγελία online, τιμολόγιο αυτόματα, αποστολή με courier integration.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2 shorter: product/food businesses -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--border)">
+
+    <div style="position:relative;overflow:hidden;height:260px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&h=380&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Αρτοποιείο">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:18px">
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px">🥖 Αρτοποιείο</div>
+        <div style="font-size:.9rem;font-weight:800;color:#fff;line-height:1.3">«Click & collect από το χάραμα.»</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(217,119,6,.9);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:20px;text-align:center">
+        <div style="color:#fff;font-size:.85rem"><strong style="display:block;margin-bottom:8px;font-size:.95rem">Click & Collect</strong>Ο πελάτης παραγγέλνει online, παραλαμβάνει στο κατάστημα.</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;height:260px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&h=380&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Παντοπωλείο">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:18px">
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px">🏪 Μίνι μάρκετ</div>
+        <div style="font-size:.9rem;font-weight:800;color:#fff;line-height:1.3">«200 προϊόντα online σε μια ώρα.»</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(37,99,235,.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:20px;text-align:center">
+        <div style="color:#fff;font-size:.85rem"><strong style="display:block;margin-bottom:8px;font-size:.95rem">Εισαγωγή από Excel</strong>Όλα τα προϊόντα σου online μαζικά, με ένα αρχείο.</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;height:260px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=500&h=380&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Παραγωγός">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:18px">
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px">🫒 Παραγωγός</div>
+        <div style="font-size:.9rem;font-weight:800;color:#fff;line-height:1.3">«Η ΑΑΔΕ ενημερώνεται μόνη της.»</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(22,163,74,.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:20px;text-align:center">
+        <div style="color:#fff;font-size:.85rem"><strong style="display:block;margin-bottom:8px;font-size:.95rem">myDATA αυτόματα</strong>Κάθε πώληση αποστέλλεται στην ΑΑΔΕ χωρίς καμία ενέργεια.</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;height:260px"
+         onmouseenter="this.querySelector('.ov').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)'"
+         onmouseleave="this.querySelector('.ov').style.opacity='0';this.querySelector('img').style.transform='scale(1)'">
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=380&fit=crop&crop=center"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" alt="Κλινική">
+      <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 52%)"></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:18px">
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px">🏥 Κλινική / Ιατρείο</div>
+        <div style="font-size:.9rem;font-weight:800;color:#fff;line-height:1.3">«Κάθε γιατρός βλέπει μόνο τα δικά του.»</div>
+      </div>
+      <div class="ov" style="position:absolute;inset:0;background:rgba(124,58,237,.88);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;padding:20px;text-align:center">
+        <div style="color:#fff;font-size:.85rem"><strong style="display:block;margin-bottom:8px;font-size:.95rem">RBAC Ρόλοι</strong>Ιατρός, γραμματεία, λογιστής — ο καθένας βλέπει μόνο ό,τι του ανήκει.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES — ALTERNATING -->
+<div id="features">
+
+  <!-- Feature 1: E-shop -->
+  <div class="feature-row">
+    <div class="feature-text">
+      <span class="tag">Ηλεκτρονικό κατάστημα</span>
+      <h3>Το δικό σου e-shop, με το δικό σου brand.</h3>
+      <p>Ανέβασε προϊόντα, ορίστε κατηγορίες, φωτογραφίες και τιμές. Ενεργό πριν προλάβεις να πιεις τον καφέ σου.</p>
+      <div class="feature-checks">
+        <div class="feature-check">Custom domain (π.χ. shop.myshop.gr)</div>
+        <div class="feature-check">Απεριόριστα προϊόντα και παραλλαγές</div>
+        <div class="feature-check">Εισαγωγή από Excel μια κίνηση</div>
+        <div class="feature-check">Mobile-first storefront</div>
+      </div>
+    </div>
+    <div class="feature-visual">
+      <div class="fv-header">
+        <div class="fv-dots"><div class="fv-dot fv-dot-r"></div><div class="fv-dot fv-dot-y"></div><div class="fv-dot fv-dot-g"></div></div>
+        <div class="fv-url">agora.e-emporion.eu</div>
+      </div>
+      <div class="fv-body">
+        <div style="background:#EFF6FF;border-radius:10px;padding:14px;text-align:center;font-size:.8rem;font-weight:800;color:#1D4ED8;letter-spacing:.05em">ΚΑΛΟΚΑΙΡΙΝΕΣ ΠΡΟΣΦΟΡΕΣ 🌊</div>
+        <div class="mini-product-grid">
+          <div class="mini-pcard"><div class="mini-pcard-img">🫒</div><div class="mini-pcard-info"><div class="mini-pcard-name">Εξαιρετικό Ελαιόλαδο 500ml</div><div class="mini-pcard-price">€12,90</div></div></div>
+          <div class="mini-pcard"><div class="mini-pcard-img">🍯</div><div class="mini-pcard-info"><div class="mini-pcard-name">Θυμαρίσιο Μέλι 450g</div><div class="mini-pcard-price">€8,50</div></div></div>
+          <div class="mini-pcard"><div class="mini-pcard-img">🧀</div><div class="mini-pcard-info"><div class="mini-pcard-name">Γραβιέρα Κρήτης 300g</div><div class="mini-pcard-price">€9,20</div></div></div>
+          <div class="mini-pcard"><div class="mini-pcard-img">🌿</div><div class="mini-pcard-info"><div class="mini-pcard-name">Βιολογικό Θυμάρι 50g</div><div class="mini-pcard-price">€3,50</div></div></div>
+          <div class="mini-pcard"><div class="mini-pcard-img">🫙</div><div class="mini-pcard-info"><div class="mini-pcard-name">Τσατσαρή Κριτσίνια</div><div class="mini-pcard-price">€4,80</div></div></div>
+          <div class="mini-pcard"><div class="mini-pcard-img">🍷</div><div class="mini-pcard-info"><div class="mini-pcard-name">Κρητικό Κρασί 750ml</div><div class="mini-pcard-price">€11,00</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature 2: Bookings -->
+  <div class="feature-row flip" style="background:var(--bg);padding-left:0;padding-right:0"><div style="max-width:1100px;margin:0 auto;padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%">
+    <div class="feature-text">
+      <span class="tag" style="background:#F0FDF4;color:var(--green)">Κρατήσεις & Υπηρεσίες</span>
+      <h3>Κομμωτήριο, γυμναστήριο, ιατρείο — ραντεβού online.</h3>
+      <p>Οι πελάτες σου κλείνουν μόνοι τους. Εσύ βλέπεις το ημερολόγιο, λαμβάνεις την πληρωμή αμέσως.</p>
+      <div class="feature-checks">
+        <div class="feature-check">Διαχείριση προσωπικού & ωρών</div>
+        <div class="feature-check">Αυτόματες υπενθυμίσεις SMS/email</div>
+        <div class="feature-check">Online πληρωμή κατά την κράτηση</div>
+        <div class="feature-check">Χωρίς τηλεφωνήματα και χάσιμο χρόνου</div>
+      </div>
+    </div>
+    <div class="feature-visual">
+      <div class="fv-header">
+        <div class="fv-dots"><div class="fv-dot fv-dot-r"></div><div class="fv-dot fv-dot-y"></div><div class="fv-dot fv-dot-g"></div></div>
+        <div class="fv-url">dashboard.e-emporion.eu/bookings</div>
+      </div>
+      <div class="fv-body">
+        <div class="mini-calendar">
+          <div class="mini-cal-header">
+            <span class="mini-cal-title">Ιούλιος 2025</span>
+            <span class="mini-cal-nav">‹ ›</span>
+          </div>
+          <div class="mini-cal-grid">
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΔΕ</div>
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΤΡ</div>
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΤΕ</div>
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΠΕ</div>
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΠΑ</div>
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΣΑ</div>
+            <div class="cal-day" style="color:var(--light);font-size:.55rem">ΚΥ</div>
+            <div class="cal-day empty"></div><div class="cal-day empty"></div>
+            <div class="cal-day booked">1</div><div class="cal-day">2</div>
+            <div class="cal-day booked">3</div><div class="cal-day">4</div><div class="cal-day">5</div>
+            <div class="cal-day">6</div><div class="cal-day booked">7</div>
+            <div class="cal-day today">8</div><div class="cal-day booked">9</div>
+            <div class="cal-day">10</div><div class="cal-day booked">11</div><div class="cal-day">12</div>
+          </div>
+          <div class="mini-slot"><span class="mini-slot-time">10:00</span><span class="mini-slot-name">Πελάτης 10:00</span><span class="mini-slot-badge">Επιβεβαιωμένο</span></div>
+          <div class="mini-slot" style="background:var(--bg)"><span class="mini-slot-time">11:30</span><span class="mini-slot-name">Κωνσταντίνου Α.</span><span class="mini-slot-badge">Επιβεβαιωμένο</span></div>
+          <div class="mini-slot" style="background:#FFF7ED"><span class="mini-slot-time">14:00</span><span class="mini-slot-name">Νέα κράτηση</span><span class="mini-slot-badge" style="background:#FEF3C7;color:var(--amber)">Εκκρεμεί</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- Feature 3: myDATA -->
+  <div class="feature-row">
+    <div class="feature-text">
+      <span class="tag" style="background:#F0FDF4;color:var(--green)">myDATA & ΑΑΔΕ</span>
+      <h3>Η φορολογία σου γίνεται μόνη της.</h3>
+      <p>Κάθε παραγγελία εκδίδει παραστατικό και αποστέλλεται αυτόματα στην ΑΑΔΕ. ΜΑΡΚ, QR code, σωστός ΦΠΑ — χωρίς να κάνεις τίποτα.</p>
+      <div class="feature-checks">
+        <div class="feature-check">Αποδείξεις & Τιμολόγια (τύπος 1.1, 2.1)</div>
+        <div class="feature-check">Πιστωτικά τιμολόγια για επιστροφές (11.4)</div>
+        <div class="feature-check">B2B τιμολόγηση με έλεγχο ΑΦΜ</div>
+        <div class="feature-check">QR code & ΜΑΡΚ σε κάθε παραστατικό</div>
+      </div>
+    </div>
+    <div class="feature-visual">
+      <div class="fv-header">
+        <div class="fv-dots"><div class="fv-dot fv-dot-r"></div><div class="fv-dot fv-dot-y"></div><div class="fv-dot fv-dot-g"></div></div>
+        <div class="fv-url">myDATA · Live αποστολές</div>
+      </div>
+      <div class="fv-body">
+        <div class="mini-mydata">
+          <div class="mini-row ok"><div class="mini-row-dot"></div><div class="mini-row-text">Απόδειξη #2847 · €34,50</div><div class="mini-row-badge">Απεστάλη ✓</div></div>
+          <div class="mini-row ok"><div class="mini-row-dot"></div><div class="mini-row-text">Τιμολόγιο Β2Β #1092 · ΑΛΦΑ ΙΚΕ</div><div class="mini-row-badge">ΜΑΡΚ ✓</div></div>
+          <div class="mini-row pending"><div class="mini-row-dot"></div><div class="mini-row-text">Πιστωτικό #CN-021 · Επιστροφή</div><div class="mini-row-badge">Αποστολή ↗</div></div>
+          <div class="mini-row ok"><div class="mini-row-dot"></div><div class="mini-row-text">Απόδειξη #2848 · €12,90</div><div class="mini-row-badge">Απεστάλη ✓</div></div>
+          <div class="mini-row ok"><div class="mini-row-dot"></div><div class="mini-row-text">Τιμολόγιο #1093 · Κρητικά ΕΠΕ</div><div class="mini-row-badge">ΜΑΡΚ ✓</div></div>
+        </div>
+        <div class="mini-aade-bar">🟢 ΑΑΔΕ · Τελευταία σύνδεση πριν από 1 λεπτό</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-center">
+    <div class="section-eyebrow">Πώς λειτουργεί</div>
+    <h2 class="section-h2">Τρία βήματα.</h2>
+    <p class="section-body">Δεν χρειάζεσαι τεχνικές γνώσεις. Αν ξέρεις να γράφεις email, μπορείς.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div class="how-title">Εγγραφή & ΑΦΜ</div>
+      <div class="how-desc">Δημιούργησε λογαριασμό με email ή Google. Πρόσθεσε το ΑΦΜ σου — τα στοιχεία σου ελέγχονται αυτόματα από τη Γ.Γ.Π.Σ. Έτοιμος σε 3 λεπτά.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div class="how-title">Ανέβασε τα προϊόντα σου</div>
+      <div class="how-desc">Φωτογραφίες, τιμές, ΦΠΑ — ή εισαγωγή από Excel μαζικά. Το κατάστημα είναι ζωντανό την ίδια μέρα.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div class="how-title">Πούλα. Εμείς φροντίζουμε τα υπόλοιπα.</div>
+      <div class="how-desc">Κάθε παραγγελία εκδίδει παραστατικό και αποστέλλεται στην ΑΑΔΕ αυτόματα. Εσύ βλέπεις μόνο τα χρήματα να έρχονται.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRODUCT SCREENSHOTS SHOWCASE -->
+<section style="background:var(--near-black);padding:100px 48px;overflow:hidden">
+  <div style="text-align:center;margin-bottom:64px">
+    <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px">Η πλατφόρμα</div>
+    <h2 style="font-size:clamp(2rem,4vw,3.25rem);font-weight:900;letter-spacing:-.03em;line-height:1.1;color:#fff;margin-bottom:16px">Όλα σε ένα dashboard.</h2>
+    <p style="font-size:1rem;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto;line-height:1.7">Παραγγελίες, αποθέματα, κρατήσεις, παραστατικά — μια ματιά και ξέρεις τα πάντα.</p>
+  </div>
+
+  <!-- Main dashboard mockup -->
+  <div style="max-width:960px;margin:0 auto;position:relative">
+
+    <!-- Laptop frame -->
+    <div style="background:#1F2937;border-radius:16px;padding:12px 12px 0;border:1px solid #374151;box-shadow:0 40px 80px rgba(0,0,0,.6)">
+      <!-- screen notch bar -->
+      <div style="background:#111827;border-radius:8px 8px 0 0;padding:8px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #374151">
+        <div style="display:flex;gap:6px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#FF5F57"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#FEBC2E"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#28C840"></div>
+        </div>
+        <div style="flex:1;background:#1F2937;border-radius:4px;padding:4px 12px;font-size:.68rem;color:rgba(255,255,255,.3);font-family:monospace;text-align:center">dashboard.e-emporion.eu</div>
+      </div>
+      <!-- dashboard screenshot -->
+      <div style="border-radius:0 0 8px 8px;overflow:hidden;background:#F9FAFB">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=960&h=520&fit=crop&crop=top" 
+             style="width:100%;display:block;border-radius:0 0 8px 8px" 
+             alt="e-emporion dashboard">
+      </div>
+    </div>
+
+    <!-- Floating phone mockup - RIGHT -->
+    <div style="position:absolute;right:-60px;bottom:-32px;width:180px;background:#1F2937;border-radius:28px;padding:8px;border:1px solid #374151;box-shadow:0 24px 48px rgba(0,0,0,.5)">
+      <div style="background:#111827;border-radius:20px;overflow:hidden">
+        <div style="height:6px;display:flex;justify-content:center;padding-top:3px">
+          <div style="width:32px;height:3px;background:#374151;border-radius:100px"></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=200&h=380&fit=crop&crop=top" 
+             style="width:100%;display:block" alt="mobile shop">
+        <div style="padding:6px 8px;background:#0F172A">
+          <div style="font-size:.55rem;color:rgba(255,255,255,.4);text-align:center">agora.e-emporion.eu</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating notification card - LEFT -->
+    <div style="position:absolute;left:-40px;top:80px;background:white;border-radius:14px;padding:12px 16px;box-shadow:0 16px 40px rgba(0,0,0,.25);width:200px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <div style="width:28px;height:28px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;font-size:.8rem">✓</div>
+        <div>
+          <div style="font-size:.72rem;font-weight:700;color:#0A0A0A">Νέα παραγγελία!</div>
+          <div style="font-size:.65rem;color:#6B7280">πριν από 2 λεπτά</div>
+        </div>
+      </div>
+      <div style="font-size:.7rem;color:#374151;line-height:1.4">Ελαιόλαδο ×2 · €25,80</div>
+      <div style="margin-top:6px;font-size:.65rem;color:#16A34A;font-weight:600">✓ myDATA απεστάλη</div>
+    </div>
+
+  </div>
+
+  <!-- 3 mini feature highlights below -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:80px auto 0">
+    <div style="text-align:center">
+      <div style="font-size:1.5rem;margin-bottom:12px">📦</div>
+      <div style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:6px">Διαχείριση παραγγελιών</div>
+      <div style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Δες όλες τις παραγγελίες, κατάσταση αποστολής και πληρωμές σε ένα μέρος.</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:1.5rem;margin-bottom:12px">🧾</div>
+      <div style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:6px">Παραστατικά αυτόματα</div>
+      <div style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Κάθε πώληση στέλνει PDF παραστατικό στον πελάτη και αναφορά στην ΑΑΔΕ.</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:1.5rem;margin-bottom:12px">📊</div>
+      <div style="font-size:.95rem;font-weight:700;color:#fff;margin-bottom:6px">Analytics σε πραγματικό χρόνο</div>
+      <div style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Πωλήσεις, best sellers, τζίρος ανά μήνα — όλα με γράφημα στο dashboard.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="section-center">
+    <div class="section-eyebrow">Αξιολογήσεις</div>
+    <h2 class="section-h2">Τι λένε οι έμποροί μας.</h2>
+  </div>
+  <div class="testi-scroll-wrap">
+    <div class="testi-track">
+      <!-- Set 1 -->
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Πριν το e-emporion έπαιρνα ραντεβού στο τηλέφωνο και το τιμολόγιο το έγραφα χειροκίνητα. Τώρα όλα γίνονται μόνα τους. Γλιτώνω 2 ώρες την ημέρα.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#2563EB">ΜΠ</div>
+          <div><div class="tcard-name">Μ.Π.</div><div class="tcard-biz">Κομμωτήριο · Πάτρα</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Το myDATA με τρόμαζε. Ο λογιστής μου είπε ότι με το e-emporion όλα πάνε αυτόματα στην ΑΑΔΕ. Φέτος δεν είχα κανένα πρόστιμο.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#D97706">ΓΚ</div>
+          <div><div class="tcard-name">Γ.Κ.</div><div class="tcard-biz">Αγροκτήμα · Ηράκλειο</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Έχω 3 υπαλλήλους. Ο καθένας βλέπει μόνο αυτό που του ανήκει. Το σύστημα RBAC ήταν αυτό που με έπεισε.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#0EA5E9">ΑΣ</div>
+          <div><div class="tcard-name">Α.Σ.</div><div class="tcard-biz">Φυσικοθεραπεία · Θεσσαλονίκη</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Μεταφέρθηκα από άλλη πλατφόρμα σε μισή ώρα. Τα προϊόντα εισήχθησαν αυτόματα από το Excel. Απίστευτα εύκολο.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#16A34A">ΝΔ</div>
+          <div><div class="tcard-name">Ν.Δ.</div><div class="tcard-biz">Παντοπωλείο · Αθήνα</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Πουλάω ελαιόλαδο και μέλι. Πριν δεν είχα ιδέα από e-shop. Το e-emporion με βοήθησε να στήσω τα πάντα μόνος μου σε μια μέρα.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#7C3AED">ΠΚ</div>
+          <div><div class="tcard-name">Π.Κ.</div><div class="tcard-biz">Αγροτικά Προϊόντα · Χανιά</div></div>
+        </div>
+      </div>
+      <!-- Set 2 (duplicate for loop) -->
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Πριν το e-emporion έπαιρνα ραντεβού στο τηλέφωνο και το τιμολόγιο το έγραφα χειροκίνητα. Τώρα όλα γίνονται μόνα τους. Γλιτώνω 2 ώρες την ημέρα.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#2563EB">ΜΠ</div>
+          <div><div class="tcard-name">Μ.Π.</div><div class="tcard-biz">Κομμωτήριο · Πάτρα</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Το myDATA με τρόμαζε. Ο λογιστής μου είπε ότι με το e-emporion όλα πάνε αυτόματα στην ΑΑΔΕ. Φέτος δεν είχα κανένα πρόστιμο.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#D97706">ΓΚ</div>
+          <div><div class="tcard-name">Γ.Κ.</div><div class="tcard-biz">Αγροκτήμα · Ηράκλειο</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Έχω 3 υπαλλήλους. Ο καθένας βλέπει μόνο αυτό που του ανήκει. Το σύστημα RBAC ήταν αυτό που με έπεισε.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#0EA5E9">ΑΣ</div>
+          <div><div class="tcard-name">Α.Σ.</div><div class="tcard-biz">Φυσικοθεραπεία · Θεσσαλονίκη</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Μεταφέρθηκα από άλλη πλατφόρμα σε μισή ώρα. Τα προϊόντα εισήχθησαν αυτόματα από το Excel. Απίστευτα εύκολο.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#16A34A">ΝΔ</div>
+          <div><div class="tcard-name">Ν.Δ.</div><div class="tcard-biz">Παντοπωλείο · Αθήνα</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">«Πουλάω ελαιόλαδο και μέλι. Πριν δεν είχα ιδέα από e-shop. Το e-emporion με βοήθησε να στήσω τα πάντα μόνος μου σε μια μέρα.»</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar" style="background:#7C3AED">ΠΚ</div>
+          <div><div class="tcard-name">Π.Κ.</div><div class="tcard-biz">Αγροτικά Προϊόντα · Χανιά</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FULL BLEED PHOTO BREAK -->
+<div style="position:relative;height:420px;overflow:hidden">
+  <img src="https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=1400&h=500&fit=crop&crop=center" 
+       style="width:100%;height:100%;object-fit:cover;display:block" 
+       alt="Έμπορος χρησιμοποιεί e-emporion">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.72) 0%,rgba(10,10,10,0.2) 60%,transparent 100%)"></div>
+  <div style="position:absolute;top:50%;left:80px;transform:translateY(-50%);max-width:480px">
+    <div style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px">Πραγματικά αποτελέσματα</div>
+    <div style="font-size:clamp(1.75rem,3vw,2.75rem);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.03em;margin-bottom:20px">
+      «Σε μια μέρα είχα<br>το e-shop μου online.»
+    </div>
+    <div style="font-size:.9rem;color:rgba(255,255,255,.65)">Ιδιοκτήτης Παντοπωλείου · Αθήνα</div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-center">
+    <div class="section-eyebrow">Τιμολόγηση</div>
+    <h2 class="section-h2">Ξεκάθαρες τιμές.</h2>
+    <p class="section-body">Ξεκίνα δωρεάν. Χωρίς κάρτα.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pcard">
+      <div class="pcard-tier">Free</div>
+      <div class="pcard-price"><sup>€</sup>0<sub>/μήνα</sub></div>
+      <div class="pcard-desc">Δοκίμασε χωρίς δέσμευση.</div>
+      <div class="pcard-features">
+        <div class="pf">Έως 20 προϊόντα</div>
+        <div class="pf">Subdomain e-emporion.eu</div>
+        <div class="pf">IRIS payments</div>
+        <div class="pf">20 AI operations/μήνα</div>
+        <div class="pf">Basic support</div>
+        <div class="pf no">Custom domain</div>
+        <div class="pf no">myDATA reporting</div>
+      </div>
+      <a href="https://dashboard.e-emporion.eu/sign-up" class="pcard-btn pcard-btn-outline">Ξεκίνα δωρεάν</a>
+    </div>
+    <div class="pcard featured">
+      <div class="pcard-popular">✦ ΠΙΟ ΔΗΜΟΦΙΛΕΣ</div>
+      <div class="pcard-tier">Starter</div>
+      <div class="pcard-price"><sup>€</sup>29<sub>/μήνα</sub></div>
+      <div class="pcard-desc">Για μικρά καταστήματα που ξεκινούν online.</div>
+      <div class="pcard-features">
+        <div class="pf">Έως 200 προϊόντα</div>
+        <div class="pf">Custom domain</div>
+        <div class="pf">myDATA reporting</div>
+        <div class="pf">100 AI operations/μήνα</div>
+        <div class="pf">IRIS + κάρτα</div>
+        <div class="pf">Κατηγορίες & φίλτρα</div>
+        <div class="pf">Email support</div>
+      </div>
+      <a href="https://dashboard.e-emporion.eu/sign-up" class="pcard-btn pcard-btn-blue">Ξεκίνα</a>
+    </div>
+    <div class="pcard">
+      <div class="pcard-tier">Professional</div>
+      <div class="pcard-price"><sup>€</sup>59<sub>/μήνα</sub></div>
+      <div class="pcard-desc">Για καταστήματα που θέλουν πλήρεις δυνατότητες.</div>
+      <div class="pcard-features">
+        <div class="pf">Απεριόριστα προϊόντα</div>
+        <div class="pf">Priority support</div>
+        <div class="pf">500 AI operations/μήνα</div>
+        <div class="pf">Sales analytics</div>
+        <div class="pf">Courier integration (σύντομα)</div>
+        <div class="pf">Multi-user management</div>
+        <div class="pf">Όλα του Starter</div>
+      </div>
+      <a href="https://dashboard.e-emporion.eu/sign-up" class="pcard-btn pcard-btn-outline">Ξεκίνα</a>
+    </div>
+    <div class="pcard">
+      <div class="pcard-tier">Business</div>
+      <div class="pcard-price"><sup>€</sup>99<sub>/μήνα</sub></div>
+      <div class="pcard-desc">Για πολλαπλά καταστήματα και franchise.</div>
+      <div class="pcard-features">
+        <div class="pf">Πολλαπλές τοποθεσίες</div>
+        <div class="pf">Franchise dashboard</div>
+        <div class="pf">Unlimited AI operations</div>
+        <div class="pf">Custom integration</div>
+        <div class="pf">Support SLA</div>
+        <div class="pf">Αφαίρεση branding</div>
+        <div class="pf">Όλα του Professional</div>
+      </div>
+      <a href="mailto:hello@e-emporion.eu" class="pcard-btn pcard-btn-outline">Επικοινωνία</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Άνοιξε το e-shop σου<br>σήμερα.</h2>
+  <p>Δωρεάν να ξεκινήσεις. Χωρίς κάρτα. Χωρίς developer.</p>
+  <a href="https://dashboard.e-emporion.eu/sign-up" class="btn-big-white">Ξεκίνα δωρεάν →</a>
+  <p class="cta-fine">Χωρίς δεσμεύσεις · Ακύρωση ανά πάσα στιγμή</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="footer-logo"><span>e</span>-emporion</a>
+      <p class="footer-tagline">Η πλατφόρμα e-commerce για τον Έλληνα έμπορο.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Προϊόν</div>
+      <div class="footer-links">
+        <a href="#">Χαρακτηριστικά</a>
+        <a href="#">myDATA</a>
+        <a href="#">Τιμές</a>
+        <a href="#">Changelog</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Εταιρεία</div>
+      <div class="footer-links">
+        <a href="#">Σχετικά</a>
+        <a href="#">Blog</a>
+        <a href="#">Επικοινωνία</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Υποστήριξη</div>
+      <div class="footer-links">
+        <a href="#">Οδηγοί χρήσης</a>
+        <a href="#">myDATA FAQ</a>
+        <a href="#">Support</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      © 2025 e-emporion ·
+      <a href="#">Όροι Χρήσης</a> ·
+      <a href="#">Απόρρητο</a> ·
+      <a href="#">GDPR</a>
+    </div>
+    <div class="footer-badge">🇬🇷 Φτιαγμένο για τον Έλληνα έμπορο</div>
+  </div>
+</footer>
+
+<script>
+// Animated counter in hero
+(function(){
+  const el = document.getElementById('counter');
+  if(!el) return;
+  let base = 1284;
+  function tick(){
+    base += Math.floor(Math.random() * 3);
+    el.textContent = base.toLocaleString('el-GR');
+    setTimeout(tick, 3000 + Math.random()*4000);
+  }
+  setTimeout(tick, 2000);
+})();
+</script>
+</body>
+</html>
